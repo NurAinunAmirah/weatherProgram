@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Visualization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .result {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Weather Visualization</h1>
+    <form action="/weather" method="get">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <input type="submit" value="Get Weather">
+    </form>
+
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+
+    <div class="result" th:if="${city}">
+        <p>Weather in <span th:text="${city}"></span>:</p>
+        <p>Temperature: <span th:text="${temperature}"></span> °C</p>
+    </div>
+</div>
+
+</body>
+</html>
